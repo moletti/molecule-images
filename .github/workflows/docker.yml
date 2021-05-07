@@ -3,16 +3,28 @@ name: ci
 on:
   push:
     branches: [ master ]
-  pull_request:
-    branches: [ master ]
 
 jobs:
   build:
     strategy:
       fail-fast: false
       matrix:
-        distr: [ debian ]
-        distr_version: [ 9, 10 ]
+        include:
+          - distr: debian
+            distr_version: jessie
+            tags: |
+              moletti/molecule-debian:8
+              moletti/molecule-debian:jessie
+          - distr: debian
+            distr_version: stretch
+            tags: |
+               moletti/molecule-debian:9
+               moletti/molecule-debian:stretch
+          - distr: debian
+            distr_version: buster
+            tags: |
+               moletti/molecule-debian:10
+               moletti/molecule-debian:buster
 
     runs-on: ubuntu-latest
     steps:
@@ -30,4 +42,4 @@ jobs:
         context: ${{ matrix.distr }}
         push: true
         build-args: "OS_RELEASE=${{ matrix.distr_version }}"
-        tags: ${{ secrets.REGISTRY_USERNAME }}/molecule-${{ matrix.distr }}:${{ matrix.distr_version }}
+        tags: ${{ matrix.tags }}
