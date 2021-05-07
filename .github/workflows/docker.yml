@@ -1,0 +1,38 @@
+name: ci
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        distr: [""]
+        distr_version: [""]
+        include:
+          - distr: debian
+            distr_version: 9
+          - distr: debian
+            distr_version: 10
+
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v1
+    - name: Login to DockerHub
+      uses: docker/login-action@v1
+      with:
+        username: ${{ secrets.USERNAME }}
+        password: ${{ secrets.TOKEN }}
+    - name: Build and push
+      uses: docker/build-push-action@v2
+      with:
+        context: ${{ matrix.distr }}
+        push: true
+        build-args: "OS_RELEASE=${{ matrix.distr_version }}"
+        tags: moletti/molecule-${{ matrix.distr }}:${{ matrix.distr_version }}
