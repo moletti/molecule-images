@@ -26,6 +26,22 @@ jobs:
               moletti/molecule-debian:10
               moletti/molecule-debian:buster
               moletti/molecule-debian:latest
+          - distr: ubuntu
+            distr_version: 16.04
+            tags: |
+               moletti/molecule-ubuntu:16.04
+               moletti/molecule-ubuntu:xenial
+          - distr: ubuntu
+            distr_version: 18.04
+            tags: |
+              moletti/molecule-ubuntu:18.04
+              moletti/molecule-ubuntu:bionic
+          - distr: ubuntu
+            distr_version: 20.04
+            tags: |
+              moletti/molecule-ubuntu:20.04
+              moletti/molecule-ubuntu:focal
+              moletti/molecule-ubuntu:latest
 
     runs-on: ubuntu-latest
     steps:
