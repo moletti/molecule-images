@@ -2,6 +2,7 @@
 Pre built images for testing with molecule framework.
 All images include:
 - systemd
+- dbus
 - python/python3
 - sudo
 
@@ -25,7 +26,7 @@ platforms:
 
 ##### Locally
 ```
-docker run -d ubuntu --privileged -v /sys/fs/cgroup:/sys/fs/cgroup:ro moletti/molecule-ubuntu:20.04 
+docker run -d --privileged --name ubuntu -v /sys/fs/cgroup:/sys/fs/cgroup:ro moletti/molecule-ubuntu:20.04 
 ```
 
 **SEE ALSO**:

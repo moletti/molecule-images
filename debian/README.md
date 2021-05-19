@@ -2,6 +2,7 @@
 Pre built images for testing with molecule framework.
 All images include:
 - systemd
+- dbus
 - python/python3
 - sudo
 
@@ -24,7 +25,7 @@ platforms:
 
 ### Locally:
 ```
-docker run -d debian --privileged -v /sys/fs/cgroup:/sys/fs/cgroup:ro moletti/molecule-debian:10 
+docker run -d --privileged --name debian -v /sys/fs/cgroup:/sys/fs/cgroup:ro moletti/molecule-debian:10 debian 
 ```
 
 **SEE ALSO**:

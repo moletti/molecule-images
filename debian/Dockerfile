@@ -7,7 +7,7 @@ LABEL maintainer="Leo Moletti"
 ARG DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && \
-    apt-get install  -y -q --no-install-recommends systemd python python3 sudo && \
+    apt-get install  -y -q --no-install-recommends systemd dbus python python3 sudo && \
     rm -rf /var/lib/apt/lists/* && \
     rm -rf /lib/systemd/system/multi-user.target.wants/* \
     /etc/systemd/system/*.wants/* \
