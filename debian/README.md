@@ -25,7 +25,7 @@ platforms:
 
 ### Locally:
 ```
-docker run -d --privileged --name debian -v /sys/fs/cgroup:/sys/fs/cgroup:ro moletti/molecule-debian:10 debian 
+docker run -d --privileged --name debian -v /sys/fs/cgroup:/sys/fs/cgroup:ro moletti/molecule-debian:10 
 ```
 
 **SEE ALSO**:
